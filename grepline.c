@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 /******************************************************************************
  Copyright 2013, Michael Dec
