@@ -1,11 +1,11 @@
+
 #include <stdio.h>
 #include <stdlib.h>
 
 /******************************************************************************
  Copyright 2013, Michael Dec
  This library is licensed under 3 clause BSD license.
- Google it and read it if you want to fall asleep.
- Contact me if you would like to receive this software under another license.
+ If it's not shipped with this software, find it yourself.
  *****************************************************************************/
 
 size_t grepline(char **lineptr, size_t *n, FILE * stream)

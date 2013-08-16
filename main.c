@@ -4,8 +4,7 @@
 /******************************************************************************
  Copyright 2013, Michael Dec
  This library is licensed under 3 clause BSD license.
- Google it and read it if you want to fall asleep.
- Contact me if you would like to receive this software under another license.
+ If it's not shipped with this software, find it yourself.
  *****************************************************************************/
 
 int main(int argc, char *argv[])
@@ -17,8 +16,8 @@ int main(int argc, char *argv[])
 	}
 	FILE * fp;
 	char * line = NULL;
-	size_t length = 0;	//unsigned int
-	size_t read_length;	//signed int
+	size_t	length = 0,
+		read_length;
 	fp = fopen(argv[1],"r");
 	if(fp == NULL)
 	{
