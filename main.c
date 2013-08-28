@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "grepline.h"
 
 /******************************************************************************
  Copyright 2013, Michael Dec
