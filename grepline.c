@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -24,10 +23,13 @@ size_t grepline(char **lineptr, size_t *n, FILE * stream)
 		buf = realloc(buf,len);
 		buf[last] = fgetc(stream);
 	}
-	while(!feof(stream) && buf[last] != '\n');
+	while(!feof(stream) && buf[last] != '\n' && buf[last] != '\r');
 	if(buf[last] == EOF)
 	{
 		buf[last] = '\n';
+/* costanza.jpg
+ * > 2013
+ * > Carriage Return in standard output */
 	}
 	*n = len;
 	*lineptr = buf;
