@@ -10,15 +10,17 @@
 
 int main(int argc, char *argv[])
 {
+	FILE * fp;
+	char * line = NULL;
+	size_t	length = 0,
+		read_length;
+
 	if(argc != 2)
 	{
 		puts("Please give a file");
 		exit(1);
 	}
-	FILE * fp;
-	char * line = NULL;
-	size_t	length = 0,
-		read_length;
+	
 	fp = fopen(argv[1],"r");
 	if(fp == NULL)
 	{
