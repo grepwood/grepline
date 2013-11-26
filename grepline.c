@@ -9,13 +9,15 @@
 
 size_t grepline(char **lineptr, size_t *n, FILE * stream)
 {
+	size_t	len	= 0,
+		last	= 0;
+	char * buf	= NULL;
+
 	if(lineptr != NULL)
 	{
 		free(*lineptr);
 	}
-	size_t	len	= 0,
-		last	= 0;
-	char * buf	= NULL;
+
 	do
 	{
 		last = len;
