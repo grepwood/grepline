@@ -12,15 +12,15 @@ int main(int argc, char *argv[])
 {
 	FILE * fp;
 	char * line = NULL;
-	size_t	length = 0,
-		read_length;
+	size_t length = 0;
+	size_t read_length;
 
 	if(argc != 2)
 	{
 		puts("Please give a file");
 		exit(1);
 	}
-	
+
 	fp = fopen(argv[1],"r");
 	if(fp == NULL)
 	{
@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
 		printf("Read line of length %i:\n%s", read_length, line);
 #else
 		printf("Read line of length %ld:\n%s", read_length, line);
-#endif //__WIN32
+#endif /*__WIN32*/
 	}
 	if(line)
 	{
