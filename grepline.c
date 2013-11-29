@@ -9,29 +9,28 @@
 
 size_t grepline(char **lineptr, size_t *n, FILE * stream)
 {
-	size_t	len	= 0,
-		last	= 0;
-	char * buf	= NULL;
+	size_t len = 0;
+	size_t last = 0;
+	char * buf = NULL;
 
-	if(lineptr != NULL)
 	{
 		free(*lineptr);
 	}
-
 	do
 	{
 		last = len;
 		++len;
+#ifdef CXX11
+		buf = (char *)realloc(buf,len);
+#else
 		buf = realloc(buf,len);
+#endif /*CXX11*/
 		buf[last] = fgetc(stream);
 	}
-	while(!feof(stream) && buf[last] != '\n' && buf[last] != '\r');
+	while(!feof(stream) && buf[last] != '\n');
 	if(buf[last] == EOF)
 	{
 		buf[last] = '\n';
-/* costanza.jpg
- * > 2013
- * > Carriage Return in standard output */
 	}
 	*n = len;
 	*lineptr = buf;
