@@ -21,6 +21,10 @@ size_t grepline(char **lineptr, size_t *n, FILE * stream)
 	do
 	{
 		temp = fgetc(stream);
+		if(temp == '\r')
+		{
+			temp = fgetc(stream);
+		}
 		last = len;
 		++len;
 #ifdef CXX11
