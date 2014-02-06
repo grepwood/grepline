@@ -32,6 +32,13 @@ size_t grepline(char **lineptr, size_t *n, FILE * stream)
 	{
 		buf[last] = '\n';
 	}
+/* We'll now null-terminate the string! */
+#ifdef CXX11
+	buf = (char *)realloc(buf,len+1);
+#else
+	buf = realloc(buf,len+1);
+#endif /*CXX11*/
+	buf[len] = '\0';
 	*n = len;
 	*lineptr = buf;
 	return len;
