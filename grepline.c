@@ -11,6 +11,7 @@ size_t grepline(char **lineptr, size_t *n, FILE * stream)
 {
 	size_t len = 0;
 	size_t last = 0;
+	char trash = 0;
 	char * buf = NULL;
 	if(lineptr != NULL)
 	{
@@ -18,16 +19,21 @@ size_t grepline(char **lineptr, size_t *n, FILE * stream)
 	}
 	do
 	{
-		last = len;
-		++len;
+/* CRLF? Into the trash it goes */
+		trash = fgetc(stream);
+		if(trash != '\r')
+		{
+			last = len;
+			++len;
 #ifdef CXX11
-		buf = (char *)realloc(buf,len);
+			buf = (char *)realloc(buf,len);
 #else
-		buf = realloc(buf,len);
+			buf = realloc(buf,len);
 #endif /*CXX11*/
-		buf[last] = fgetc(stream);
+			buf[last] = trash;
+		}
 	}
-	while(!feof(stream) && buf[last] != '\n');
+	while(!feof(stream) && trash != '\n');
 	if(buf[last] == EOF)
 	{
 		buf[last] = '\n';
@@ -39,6 +45,7 @@ size_t grepline(char **lineptr, size_t *n, FILE * stream)
 	buf = realloc(buf,len+1);
 #endif /*CXX11*/
 	buf[len] = '\0';
+/* Plugging our input pointers up the addresses we were using */
 	*n = len;
 	*lineptr = buf;
 	return len;
