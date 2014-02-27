@@ -30,12 +30,8 @@ size_t grepline(char **lineptr, size_t *n, FILE * stream)
 #else
 			buf = realloc(buf,len);
 #endif /*CXX11*/
-<<<<<<< HEAD
 			buf[last] = trash;
 		}
-=======
-		buf[last] = (char)fgetc(stream);
->>>>>>> dda65466b9a965bf65057a107bf7546ba5f9b8e8
 	}
 	while(!feof(stream) && trash != '\n');
 	if(buf[last] == EOF)
