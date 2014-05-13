@@ -40,7 +40,7 @@ size_t grepline(char **lineptr, size_t *n, FILE * stream)
 	}
 	while(!feof(stream) && temp != '\n');
 /* We'll now prepare our string */
-	buf = malloc(len+2);
+	buf = (char*)malloc(len+2);
 	fseek(stream,offset,SEEK_SET);
   fread(buf,len,1,stream);
   buf[len-1] = '\n';
