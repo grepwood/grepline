@@ -10,9 +10,10 @@
 size_t grepline(char **lineptr, size_t *n, FILE * stream)
 {
 	size_t len = 0;
-	size_t last = 0;
+	size_t offset = ftell(stream);
 	char trash = 0;
 	char * buf = NULL;
+	char sizeofnewline = 0;
 	if(lineptr != NULL)
 	{
 		free(*lineptr);
@@ -23,27 +24,23 @@ size_t grepline(char **lineptr, size_t *n, FILE * stream)
 		trash = fgetc(stream);
 		if(trash != '\r')
 		{
-			last = len;
 			++len;
-#ifdef CXX11
-			buf = (char *)realloc(buf,len);
-#else
-			buf = realloc(buf,len);
-#endif /*CXX11*/
-			buf[last] = trash;
+		}
+		else
+		{
+			++sizeofnewline;
 		}
 	}
 	while(!feof(stream) && trash != '\n');
-	if(buf[last] == EOF)
+	fseek(stream,offset,SEEK_SET);
+	buf = malloc(len+1);
+	fread(buf,len,1,stream);
+	if(sizeofnewline)
 	{
-		buf[last] = '\n';
+		trash = fgetc(stream);
 	}
 /* We'll now null-terminate the string! */
-#ifdef CXX11
-	buf = (char *)realloc(buf,len+1);
-#else
-	buf = realloc(buf,len+1);
-#endif /*CXX11*/
+	buf[len-1] = '\n';
 	buf[len] = '\0';
 /* Plugging our input pointers up the addresses we were using */
 	*n = len;

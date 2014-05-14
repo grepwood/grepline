@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
+#ifdef GNU_GETLINE
+#define grepline getline
+#else
 #include "grepline.h"
+#endif /*GNU_GETLINE*/
 
 /******************************************************************************
  Copyright 2013, Michael Dec
