@@ -14,32 +14,30 @@ size_t grepline(char **lineptr, size_t *n, FILE * stream)
 	char trash = 0;
 	char * buf = NULL;
 	char sizeofnewline = 0;
-	if(lineptr != NULL)
-	{
+/* Cleaning up after previous run */
+	if(lineptr != NULL){
 		free(*lineptr);
 	}
-	do
-	{
-/* CRLF? Into the trash it goes */
+/* Reading the file until we suspect the line ends */
+	do{
 		trash = fgetc(stream);
-		if(trash != '\r')
-		{
-			++len;
-		}
-		else
-		{
-			++sizeofnewline;
+		++len;
+	}while(!feof(stream) && trash != '\n' && trash != '\r');
+/* Windows and OSX newline detection */
+	if(trash == '\r'){
+		trash = fgetc(stream);
+		if(trash == '\n'){
+			++sizeofnewline; /* It's a Windows newline */
 		}
 	}
-	while(!feof(stream) && trash != '\n');
+/* Going back and reading our line */
 	fseek(stream,offset,SEEK_SET);
-	buf = malloc(len+1);
+	buf = (char*)malloc(len+1);
 	fread(buf,len,1,stream);
-	if(sizeofnewline)
-	{
+	if(sizeofnewline){
 		trash = fgetc(stream);
 	}
-/* We'll now null-terminate the string! */
+/* Fixing the line in memory into a null-terminated LF line */
 	buf[len-1] = '\n';
 	buf[len] = '\0';
 /* Plugging our input pointers up the addresses we were using */
