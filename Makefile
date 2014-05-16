@@ -18,4 +18,4 @@ beta:
 	$(CC) $(CFLAGS) grepline2.o main.c -o example-beta
 
 clean:
-	rm -f grepline.o example grepline2.o example-beta
+	rm -f grepline.o example getline example-beta
