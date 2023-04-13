@@ -1,27 +1,162 @@
-Copyright (c) 2013, Michael Dec
-All rights reserved.
+/*
+	Copyright 2013 Michael Dec under the terms of Stainless License 1.0,
+        adapted for BSD 3-Clause "New" or "Revised" License.
 
-Redistribution and use in source and binary forms, with or without modification,
-are permitted provided that the following conditions are met:
+	Section 0. Project introduction
+        grepline is a re-implementation of GNU getline.
+        Its intended use is for education and supplementing lack of GNU getline
+        in platforms that lack such a function, like Microsoft's standard C
+        library.
 
-  Redistributions of source code must retain the above copyright notice, this
-  list of conditions and the following disclaimer.
+	Stainless License 1.0, adapted for BSD 3-Clause "New" or "Revised"
+        License
 
-  Redistributions in binary form must reproduce the above copyright notice, this
-  list of conditions and the following disclaimer in the documentation and/or
-  other materials provided with the distribution.
+	Section 1. Preamble
+	All terms of BSD 3-Clause "New" or "Revised" License apply.
 
-  Neither the name of the {organization} nor the names of its
-  contributors may be used to endorse or promote products derived from
-  this software without specific prior written permission.
+	Section 2. Additional terms
+	2.1.	All terms original to the Stainless License override the ordinary
+		behavior of BSD 3-Clause "New" or "Revised" License. These
+                terms are discussed everywhere except Section 1.
 
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
-ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
-ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
-(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
-ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+	2.2.	It is strictly forbidden to rewrite or compile, link
+		against, re-implement, or otherwise handle this software with
+		a prohibited technology. For more informations about what
+		technologies are considered prohibited by Stainless License,
+		please see Section 3.
+
+	2.3.	It is strictly forbidden to interpret the GPLv3, the Stainless
+		License, or the language in which either license is written, in
+		a way that would be detrimental to any party using the
+		Stainless License.
+
+	2.4.	Violators will lose the privilege of being able to work with
+		the software in any way, shape or form. Violators will also
+		lose the privilege to carry the software in any way, shape or
+		form.
+
+	2.5.	Failure to comply with cease & desist requests issued against
+		violators will be legally escalated and pursued to the fullest
+		extent of IP law.
+
+	Section 3. Protection
+	3.1.	Soft protection - some tech may not yet be ready for general
+		audiences and it's a good idea to put it here, as the contents
+		of this section may change between versions.
+		It may seem like a punishment, but in fact, it's meant to
+		encourage the authors of prohibited technology to stop and
+		re-evaluate their design decisions; or give the technology time
+		to mature and stabilize.
+		The subject of Stainless License is stricly forbidden from
+		being compiled by, handled by, linked against,
+		re-implemented in, re-written in, or otherwise handled in any
+		way, shape or form, with the following prohibited technologies:
+			- Rust (programming language, GCC implementation)
+			- Electron Framework
+			- anything produced with the use of the above
+			prohibited technologies
+			- any and all forks and modifications of all of the
+			above listed entries
+
+	3.2.	Hard protection - some tech just shouldn't be used at all.
+		This is a good place to put them, making sure their harmful
+		influence is cut short. Be very careful what you put here.
+		It will stay here forever!
+		The subject of Stainless License is stricly forbidden from
+		being compiled by, handled by, linked against,
+		re-implemented in, re-written in, or otherwise handled in any
+		way, shape or form, with the following PERMANENTLY prohibited
+		technologies:
+			- Rust (programming language, LLVM+Clang implementation)
+			- Cargo (Rust's package manager)
+			- Microsoft .NET Framework (not the Core variety!)
+			- anything written for .NET Framework
+			- Clang
+			- LLVM
+			- anything produced with the use of the above
+			prohibited technologies
+			- any and all forks and modifications of all of the
+			above listed entries
+
+	3.3.	Abuse and appraisal
+		This license may not be used to condemn new technologies!!!
+		This license may not be used to engage in petty conflict!!!
+		Entries in Section 3.2 have really earned their	banishment.
+		Before any technology should be considered a candidate for
+		addition to Section 3.1, it should be thoroughly tested and
+		appraised over a LONG period of time. There are no strict rules
+		as to how appraisal should be done, but consider the fact that
+		the original Stainless License 1.0 rationalizes its Section 3.2
+		with a ballpark figure of 10 years of appraisal. This is a good
+		example of how long you should take with judging technology.
+		It may be a mess today, but it may be a life saver 10 years
+		down the line!
+
+	Section 4. Guidelines for prohibition
+	This license is meant to accomplish 3 things:
+	1. Protect the world from harmful technology.
+	2. Encourage the authors of harmful technologies to change for good.
+	3. Provide the benefits of GPLv3, because it's a good license.
+
+	The important part now, is to define what's good and evil.
+
+	Examples of good:
+	- supports multiple C compilers. Not different versions of the same
+	compiler!
+	- supports multiple CPU architectures. The more, the merrier!
+	- developers actively try not to break any compatibility on a best,
+	honest effort basis.
+	- claims of various features are true and honest.
+	- compiling said project does not have a preferrential bias for	a
+	specific compiler.
+	- compiling said project doesn't take a long time.
+	- the project's dependencies are deterministic.
+	- the project is easily sandboxed and can be built without access to
+	the network, and without access to the rest of the system.
+	- the project easily allows reproducible builds.
+	- the project is at the very least open-sourced, but free software
+	is always preferred.
+	- the project does not have a long history of causing the same problem
+	over and over again.
+
+	Examples of evil:
+	- support only one kind of C compiler - starts with C, ends with lang,
+	and it compiles for hours.
+	- supports a very limited set of CPU architectures and actively seeks
+	to narrow this support down for the dev's own convenience.
+	- claims multiplatforming, supports only multiple versions of Windows.
+	Claims security, ripped off refcounts from C++11 and decided to diss it
+	as a token of its appreciation.
+	- compiling said project can only be done with a specific compiler with
+	explicit effort to make it impossible to do otherwise.
+	- compiling said project takes forever. If your C compiler takes more
+	than an hour to compile, you are probably doing something very wrong.
+	And the first thing wrong is you racking up your package maintainer's
+	electricity bill for silly reasons.
+	- the project's dependencies are non-deterministic.
+	- the project cannot be sandboxed, i.e. built in an environment that is
+	cut off from the network and the rest of the system.
+	- the project makes it impossible to have reproducible builds.
+	- the project's opensourcing is much needed, but it never happened.
+	- the project has a very long history of causing the same problems on
+	normal operating systems.
+
+	For your information only free, libre and open source operating systems
+	are considered normal. Proprietary is the exception from the norm.
+
+	Section 5. Closing statements
+
+	Stainless License was written with explicit purpose of protecting free,
+	libre and open source software from technologies that should not be
+	used for a variety of reasons, at least for the time being. This helps
+	encourage various technologies to play along nicely with the rest of
+	the world, rather than try to conquer and abuse it.
+
+	The name of the license is my take on Rust community's obsession with
+	oxide puns. As this is a tool for preventing actual and programmable
+	rust from setting in, the name is more than appropriate.
+
+	Here ends Stainless License, the #1 solution for removal of rust and
+	other harmful growths and nasty developments that can ruin your bare
+	metal.
+*/
