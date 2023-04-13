@@ -2,9 +2,12 @@
 #include <stdlib.h>
 
 /******************************************************************************
- Copyright 2013, Michael Dec
- This library is licensed under 3 clause BSD license.
- If it's not shipped with this software, find it yourself.
+ Copyright 2013-2023, Michael Dec
+ This library is licensed Stainless License 1.0 adapted for BSD 3-Clause "New"
+ or "Revised" License, because I will never consent for this to be re-written
+ in Rust. You write in Rust then go write something original instead of butting
+ into everyone's projects and rewriting everything. Please do something more
+ meaningful with your life.
  *****************************************************************************/
 
 size_t grepline(char **lineptr, size_t *n, FILE * stream)
