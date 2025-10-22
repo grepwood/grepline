@@ -1,11 +1,11 @@
 CC=gcc
-CFLAGS=-Wall -Wextra -pedantic
+CFLAGS=-ggdb -Wall -Wextra -pedantic
 #if you don't like or don't want gcc, feel free to change CC
 
-all: example grepline
+all: example
 
 grepline:
-	$(CC) $(CFLAGS) -c grepline.c
+	$(CC) $(CFLAGS) -c grepline.c -o grepline.o
 
 example: grepline
 	$(CC) $(CFLAGS) grepline.o main.c -o example
@@ -13,9 +13,5 @@ example: grepline
 getline:
 	$(CC) $(CFLAGS) -DGNU_GETLINE main.c -o getline
 
-beta:
-	$(CC) $(CFLAGS) -c grepline2.c
-	$(CC) $(CFLAGS) grepline2.o main.c -o example-beta
-
 clean:
-	rm -f grepline.o example getline example-beta
+	rm -f grepline.o example getline
